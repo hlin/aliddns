@@ -1,3 +1,5 @@
+![Python3](https://img.shields.io/badge/python-3.6%2B-green "Python3")
+
 ## What's this?
 
 If you have a domain name in Alibaba cloud and you want to use its DNS service as DDNS,
