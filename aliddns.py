@@ -17,7 +17,7 @@ from urllib.request import Request, urlopen
 
 
 logging.basicConfig(
-    level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s')
+    level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -129,10 +129,18 @@ class AliDDNS:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("domain")
-    parser.add_argument("rr")
-    parser.add_argument("--type", default='A')
+    parser.add_argument('domain', help='Domain name, e.g. example.com')
+    parser.add_argument(
+        'rr',
+        help=('For main domain example.com, rr should be @; '
+              'for subdomain abc.example.com, rr should be abc'))
+    parser.add_argument('--type', default='A', help='DNS record type')
+    parser.add_argument(
+        '--verbose', '-v', action='store_true',
+        help='Print more logs for debugging')
     args = parser.parse_args()
+    if args.verbose:
+        logger.setLevel(logging.DEBUG)
     ddns = AliDDNS(args.domain)
     ddns.refresh(args.rr, args.type)
 
