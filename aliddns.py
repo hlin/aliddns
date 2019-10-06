@@ -63,13 +63,13 @@ class AliDDNS:
         req.add_header('Accept', 'application/json')
         try:
             with urlopen(req) as resp:
-                return json.loads(resp.read())
+                return json.loads(resp.read().decode('utf-8'))
         except error.HTTPError as e:
             logger.error('Failed to call {} : {} {} {}'.format(
                 action, e.code, e.reason, e.fp.read()))
             sys.exit(1)
         except Exception as e:
-            logger.error(e)
+            logger.error('Unexpected error: {}'.format(e))
             sys.exit(1)
 
     def get_records_list(self):

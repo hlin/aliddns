@@ -1,4 +1,4 @@
-![Python3](https://img.shields.io/badge/python-3.6%2B-green "Python3")
+![Python3](https://img.shields.io/badge/python-3.5%2B-green "Python3")
 
 ## What's this?
 
